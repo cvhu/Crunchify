@@ -17,18 +17,14 @@ public class App {
         Connection conn = Jsoup.connect("http://techcrunch.com");
         try {
             Document doc = conn.get();
-            System.out.println("Start");
-//            System.out.println(doc.html());
             Elements titles = doc.getElementsByClass("post-title");
-            System.out.println(titles.size());
             for (Element title : titles) {
-                System.out.println(title.text());
+                CrunchPost post = new CrunchPost(title.text(), title.getElementsByTag("a").get(0).attr("href"));
+                System.out.print(post.getCsvString());
             }
-            System.out.println("Finished");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
     }
 }
