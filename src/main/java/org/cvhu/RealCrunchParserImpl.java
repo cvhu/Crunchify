@@ -1,6 +1,7 @@
 package org.cvhu;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +39,10 @@ public class RealCrunchParserImpl implements CrunchParser {
     }
 
     @Override
-    public void exportCsv() {
+    public void exportCsv(PrintWriter writer) {
         for (TechCrunchPost post : run()) {
             post.parse();
-            System.out.println(post.getCsvString());
+            writer.println(post.getCsvString());
         }
     }
 
