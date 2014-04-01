@@ -43,7 +43,7 @@ public abstract class AbstractPost {
     }
     
     /**
-     * Find the subject company and website using the default url.
+     * Find the subject company and website using the default url..
      */
     public void parse() {
         Connection conn = Jsoup.connect(articleUrl);
