@@ -43,7 +43,9 @@ public class RealCrunchParserImpl implements CrunchParser {
         for (TechCrunchPost post : run()) {
             post.parse();
             writer.println(post.getCsvString());
+            System.out.println(post.getCsvString());
         }
+        writer.close();
     }
 
 }
