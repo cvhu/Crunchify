@@ -30,7 +30,7 @@ public class PostTest extends TestCase {
         articleUrl = "http://techcrunch.com/2012/12/03/onespot-content-marketing-relaunch/";
         mockedName = "OneSpot";
         mockedWebsite = "http://www.onespot.com";
-        expected = String.format("\"%s\",\"%s\",\"%s\",\"%s\"", mockedName, mockedWebsite, articleTitle, articleUrl);
+        expected = String.format("\"%s\",\"%s\",\"%s\",\"%s\"", articleTitle, articleUrl, mockedName, mockedWebsite);
         post = new TechCrunchPost(articleTitle, articleUrl);
         
         Element mockedLi = mock(Element.class, Mockito.RETURNS_DEEP_STUBS);
@@ -74,7 +74,7 @@ public class PostTest extends TestCase {
     
     public void testClear() {
         post.clear();
-        expected = String.format("\"n/a\",\"n/a\",\"%s\",\"%s\"", articleTitle, articleUrl);
+        expected = String.format("\"%s\",\"%s\",\"n/a\",\"n/a\"", articleTitle, articleUrl);
         assertEquals(expected, post.getCsvString());
     }
     
