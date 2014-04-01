@@ -66,13 +66,13 @@ public abstract class AbstractPost {
      */
     public String getCsvString() {
         StringBuffer sb = new StringBuffer();
-        sb.append(getEscapedCsvString(articleTitle));
-        sb.append(",");
-        sb.append(getEscapedCsvString(articleUrl));
-        sb.append(",");
         sb.append(getEscapedCsvString(companyName));
         sb.append(",");
         sb.append(getEscapedCsvString(companyWebsite));
+        sb.append(",");
+        sb.append(getEscapedCsvString(articleTitle));
+        sb.append(",");
+        sb.append(getEscapedCsvString(articleUrl));
         return sb.toString();
     }
     
@@ -82,7 +82,7 @@ public abstract class AbstractPost {
      * @return CSV header.
      */
     public static String getCsvHeader() {
-        return "Article Title, Article Url, Company Name, Company Website";
+        return "Company Name, Company Website, Article Title, Article Url";
     }
     
     /**
