@@ -1,6 +1,7 @@
 package org.cvhu;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Connection;
@@ -20,26 +21,28 @@ public class RealCrunchParserImpl implements CrunchParser {
     }
 
     @Override
-    public List<CrunchPost> parse() {
+    public List<TechCrunchPost> run() {
         Connection conn = Jsoup.connect(url);
+        ArrayList<TechCrunchPost> posts = new ArrayList<TechCrunchPost>();
         try {
             Document doc = conn.get();
             Elements titles = doc.getElementsByClass("post-title");
             for (Element title : titles) {
-                CrunchPost post = new CrunchPost(title.text(), title.getElementsByTag("a").get(0).attr("href"));
-                System.out.print(post.getCsvString());
+                TechCrunchPost post = new TechCrunchPost(title.text(), title.getElementsByTag("a").get(0).attr("href"));
+                posts.add(post);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return null;
+        return posts;
     }
 
     @Override
     public void exportCsv() {
-        // TODO Auto-generated method stub
-
+        for (TechCrunchPost post : run()) {
+            post.parse();
+            System.out.println(post.getCsvString());
+        }
     }
 
 }

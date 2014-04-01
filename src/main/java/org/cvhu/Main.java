@@ -4,13 +4,12 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 /**
- * Hello world!
- *
+ * The main class to run the application.
  */
-public class App {
+public class Main {
     public static void main( String[] args ) {
         Injector injector = Guice.createInjector(new CrunchModule());
-        CrunchService crunchService = injector.getInstance(CrunchService.class);
-        crunchService.parse();
+        CrunchParser crunchParser = injector.getInstance(RealCrunchParserImpl.class);
+        crunchParser.exportCsv();
     }
 }
